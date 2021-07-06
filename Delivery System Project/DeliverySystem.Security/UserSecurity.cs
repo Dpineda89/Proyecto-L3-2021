@@ -8,9 +8,13 @@ namespace DeliverySystem.Security
 {
     public class UserSecurity
     {
-        public bool ValidateUser(string user, string password) 
+        public bool ValidateUser(string user, string password)
         {
             if (user == "darwin" && password == "test123")
+            {
+                return true;
+            }
+            else if (user == "joel" && password == "test456")
             {
                 return true;
             }

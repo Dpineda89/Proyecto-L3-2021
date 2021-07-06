@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Delivery System Project")]
+[assembly: AssemblyTitle("DeliverySystem.Libreria")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Delivery System Project")]
+[assembly: AssemblyProduct("DeliverySystem.Libreria")]
 [assembly: AssemblyCopyright("Copyright ©  2021")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("c68a4d59-b7b9-497b-ba48-b347f4c5b7e3")]
+[assembly: Guid("f5983a16-4030-49be-b56b-b5a2c29cdafc")]
 
 // Version information for an assembly consists of the following four values:
 //

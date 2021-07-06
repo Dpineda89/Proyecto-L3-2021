@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Delivery System Project", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeliverySystem.Security", "DeliverySystem.Security\DeliverySystem.Security.csproj", "{28B26200-767B-4090-87BC-0098CA88F549}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeliverySystem.Libreria", "DeliverySystem.Libreria\DeliverySystem.Libreria.csproj", "{F5983A16-4030-49BE-B56B-B5A2C29CDAFC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{28B26200-767B-4090-87BC-0098CA88F549}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{28B26200-767B-4090-87BC-0098CA88F549}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{28B26200-767B-4090-87BC-0098CA88F549}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5983A16-4030-49BE-B56B-B5A2C29CDAFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5983A16-4030-49BE-B56B-B5A2C29CDAFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5983A16-4030-49BE-B56B-B5A2C29CDAFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5983A16-4030-49BE-B56B-B5A2C29CDAFC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
