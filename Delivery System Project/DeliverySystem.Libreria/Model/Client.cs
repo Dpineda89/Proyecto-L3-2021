@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,12 +15,15 @@ namespace DeliverySystem.Security
          
         public DateTime FechaNacimiento { get; set; }
 
-        public long Identidad { get; set; }
+        [Key]
+        public string Identidad { get; set; }
 
         public int Telefono { get; set; }
 
         public string CorreoElectronico { get; set; }
 
         public string Direccion { get; set; }
+
+        public ICollection<OrdenDeEntrega> OrdenesDeEntrega { get; set; }
     }
 }

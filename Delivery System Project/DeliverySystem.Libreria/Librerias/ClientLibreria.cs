@@ -1,5 +1,8 @@
-﻿using System;
+﻿using DeliverySystem.Libreria.Context;
+using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,38 +11,53 @@ namespace DeliverySystem.Security
 {
     public class ClientLibreria
     {
-
-        public bool AgregarCliente(Client clienteNuevo) 
+        DeliverySystemContext DeliverySystem;
+        public ClientLibreria()
         {
-            foreach (Client cliente in Registros.Clientes)
+            
+            var eee = @"Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=Contabilidad-Main;MultipleActiveResultSets=true; Integrated Security=true";
+            var conn = new SqlConnection(SeedData.conection);
+            this.DeliverySystem = new DeliverySystemContext(conn);
+        }
+
+        public IEnumerable<Client> GetAll()
+        {
+            var clients = this.DeliverySystem.Client.ToList();
+            return clients;
+        }
+
+        public bool AgregarCliente(Client clienteNuevo)
+        {
+            var clients = this.DeliverySystem.Client.ToList();
+
+            foreach (Client cliente in clients)
             {
                 if (cliente.Identidad == clienteNuevo.Identidad)
                 {
                     return false;
                 }
             }
-
-            Registros.Clientes.Add(clienteNuevo);
+            DeliverySystem.Client.Add(clienteNuevo);
+            DeliverySystem.SaveChanges();
             return true;
         }
 
-        public bool Eliminar(long identidad)
+        public bool Eliminar(string identidad)
         {
-            foreach (var orden in Registros.OrdenesDeEntrega)
+            var ordenes = DeliverySystem.OrdenDeEntrega.Any(d => d.IdentidadCliente == identidad);
+
+            if (ordenes)
             {
-                if (orden.IdentidadCliente == identidad)
-                {
-                    return false;
-                }
+                return false;
             }
 
-            foreach (Client cliente in Registros.Clientes)
+            var cliente = DeliverySystem.Client.FirstOrDefault(c => c.Identidad == identidad);
+
+            if (cliente != null)
             {
-                if (cliente.Identidad == identidad)
-                {
-                    Registros.Clientes.Remove(cliente);
-                    return true;
-                }
+                DeliverySystem.Client.Remove(cliente);
+                DeliverySystem.SaveChanges();
+                return true;
             }
 
             return false;

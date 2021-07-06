@@ -33,7 +33,20 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.3\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.3\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -46,6 +59,30 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cliente.Designer.cs">
+      <DependentUpon>Cliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CrearCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CrearCliente.Designer.cs">
+      <DependentUpon>CrearCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Crearorden.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Crearorden.Designer.cs">
+      <DependentUpon>Crearorden.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CrearProducto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CrearProducto.Designer.cs">
+      <DependentUpon>CrearProducto.cs</DependentUpon>
+    </Compile>
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -58,19 +95,52 @@
     <Compile Include="Menu.Designer.cs">
       <DependentUpon>Menu.cs</DependentUpon>
     </Compile>
-    <Compile Include="Program.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Test.cs">
+    <Compile Include="OrdenDeEntrega.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Test.Designer.cs">
-      <DependentUpon>Test.cs</DependentUpon>
+    <Compile Include="OrdenDeEntrega.Designer.cs">
+      <DependentUpon>OrdenDeEntrega.cs</DependentUpon>
     </Compile>
+    <Compile Include="OrdenDeEntregaDetalle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OrdenDeEntregaDetalle.Designer.cs">
+      <DependentUpon>OrdenDeEntregaDetalle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Producto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Producto.Designer.cs">
+      <DependentUpon>Producto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Cliente.resx">
+      <DependentUpon>Cliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrearCliente.resx">
+      <DependentUpon>CrearCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Crearorden.resx">
+      <DependentUpon>Crearorden.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrearProducto.resx">
+      <DependentUpon>CrearProducto.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Menu.resx">
       <DependentUpon>Menu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OrdenDeEntrega.resx">
+      <DependentUpon>OrdenDeEntrega.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OrdenDeEntregaDetalle.resx">
+      <DependentUpon>OrdenDeEntregaDetalle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Producto.resx">
+      <DependentUpon>Producto.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -81,6 +151,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -95,6 +166,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DeliverySystem.Libreria\DeliverySystem.Libreria.csproj">
+      <Project>{f5983a16-4030-49be-b56b-b5a2c29cdafc}</Project>
+      <Name>DeliverySystem.Libreria</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DeliverySystem.Security\DeliverySystem.Security.csproj">
       <Project>{28b26200-767b-4090-87bc-0098ca88f549}</Project>
       <Name>DeliverySystem.Security</Name>

@@ -1,5 +1,7 @@
-﻿using System;
+﻿using DeliverySystem.Libreria.Context;
+using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,38 +10,48 @@ namespace DeliverySystem.Security
 {
     public class ProductoLibreria
     {
+        DeliverySystemContext deliverySystemContext;
+        public ProductoLibreria()
+        {
+            var conn = new SqlConnection(SeedData.conection);
+            this.deliverySystemContext = new DeliverySystemContext(conn);
+        }
+
+        public IEnumerable<Producto> GetAll() 
+        {
+            var products = deliverySystemContext.Producto.ToList();
+            return products;
+        }
 
         public bool AgregarProducto(Producto productoNuevo) 
         {
-            foreach (Producto producto in Registros.Productos)
+            var products = deliverySystemContext.Producto.Any(p => p.Codigo == productoNuevo.Codigo);
+            if (products)
             {
-                if (producto.Codigo == productoNuevo.Codigo)
-                {
-                    return false;
-                }
+                return false;
             }
 
-            Registros.Productos.Add(productoNuevo);
+            deliverySystemContext.Producto.Add(productoNuevo);
+            deliverySystemContext.SaveChanges();
             return true;
         }
 
         public bool EliminarProducto(string codigo)
         {
-            foreach (var producto in Registros.OrdenesDeEntregaDetalle)
+            var ordenes = deliverySystemContext.OrdenDeEntregaDetalle.Any(o => o.CodigoProducto == codigo);
+
+            if (ordenes)
             {
-                if (producto.CodigoProducto == codigo)
-                {
-                    return false;
-                }
+                return false;
             }
 
-            foreach (Producto producto in Registros.Productos)
+            var product = deliverySystemContext.Producto.FirstOrDefault(p => p.Codigo == codigo);
+
+            if (product != null)
             {
-                if (producto.Codigo == codigo)
-                {
-                    Registros.Productos.Remove(producto);
-                    return true;
-                }
+                deliverySystemContext.Producto.Remove(product);
+                deliverySystemContext.SaveChanges();
+                return true;
             }
 
             return false;
