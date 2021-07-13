@@ -58,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Context\DeliverySystemContext.cs" />
+    <Compile Include="Context\GeneralData.cs" />
     <Compile Include="Context\SeedData.cs" />
     <Compile Include="Librerias\ClientLibreria.cs" />
     <Compile Include="Librerias\OrdenDeEntregaLibreria.cs" />
@@ -66,6 +67,7 @@
     <Compile Include="Model\OrdenDeEntrega.cs" />
     <Compile Include="Model\OrdenDeEntregaDetalle.cs" />
     <Compile Include="Model\Producto.cs" />
+    <Compile Include="Model\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

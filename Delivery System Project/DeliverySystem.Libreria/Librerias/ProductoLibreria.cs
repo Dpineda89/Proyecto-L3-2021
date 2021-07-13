@@ -13,7 +13,7 @@ namespace DeliverySystem.Security
         DeliverySystemContext deliverySystemContext;
         public ProductoLibreria()
         {
-            var conn = new SqlConnection(SeedData.conection);
+            var conn = new SqlConnection(GeneralData.conection);
             this.deliverySystemContext = new DeliverySystemContext(conn);
         }
 

@@ -4,116 +4,104 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.Entity;
+using DeliverySystem.Libreria.Model;
 
 namespace DeliverySystem.Libreria.Context
 {
-    public static class SeedData
+    public class SeedData : CreateDatabaseIfNotExists<DeliverySystemContext>
     {
-        public static string conection = @"Data Source=(local);Initial Catalog=DeliverySystemDatabase1;"
-                + "Integrated Security=SSPI;";
-
-        public static bool SeedDataDefault()
+        protected override void Seed(DeliverySystemContext deliverySystem)
         {
-            var conn = new SqlConnection(SeedData.conection);
-            var deliverySystem = new DeliverySystemContext(conn);
-            var clients = deliverySystem.Client.ToList();
-            var products = deliverySystem.Producto.ToList();
-            var ordenes = deliverySystem.OrdenDeEntrega.ToList();
-
-            if (!clients.Any())
+            deliverySystem.Usuario.Add(new Usuario
             {
-                deliverySystem.Client.Add(new Security.Client
-                {
-                    Identidad = "1602199700135",
-                    Nombres = "Joel Ramiro",
-                    Apellidos = "Caballero Castellanos",
-                    CorreoElectronico = "joel.ramirocc@gmail.com",
-                    Direccion = "Barrio la Primavera, Choloma Cortes",
-                    FechaNacimiento = new DateTime(1997, 05, 26),
-                    Telefono = 31549099,
-                });
+                UserName = "darwintest",
+                Password = "1",
+            });
 
-                deliverySystem.Client.Add(new Security.Client
-                {
-                    Identidad = "1602199300132",
-                    Nombres = "Bessy Yolani",
-                    Apellidos = "Caballero Castellanos",
-                    CorreoElectronico = "bessy.yolani@gmail.com",
-                    Direccion = "Villas del Marquez, Choloma Cortes",
-                    FechaNacimiento = new DateTime(1993, 05, 26),
-                    Telefono = 98605328,
-                });
 
-                deliverySystem.SaveChanges();
-            }
-
-            if (!products.Any())
+            deliverySystem.Usuario.Add(new Usuario
             {
-                deliverySystem.Producto.Add(new Security.Producto
-                {
-                    Codigo = "BAS",
-                    Nombre = "Baleada",
-                    Descripcion = "Baleada sencilla",
-                    Cantidad = 15,
-                    PrecioUnitario = 10,
-                });
-                deliverySystem.Producto.Add(new Security.Producto
-                {
-                    Codigo = "BAP",
-                    Nombre = "Baleada",
-                    Descripcion = "Baleada con pollo",
-                    Cantidad = 10,
-                    PrecioUnitario = 15,
-                });
-                deliverySystem.Producto.Add(new Security.Producto
-                {
-                    Codigo = "TAC",
-                    Nombre = "Taco",
-                    Descripcion = "Tacos de pollo",
-                    Cantidad = 20,
-                    PrecioUnitario = 25,
-                });
+                UserName = "joeltest",
+                Password = "2",
+            });
 
-                deliverySystem.SaveChanges();
-            }
-
-            if (!ordenes.Any())
+            deliverySystem.SaveChanges();
+            deliverySystem.Client.Add(new Security.Client
             {
-                try
-                {
-                    var orden = deliverySystem.OrdenDeEntrega.Add(new Security.OrdenDeEntrega
-                    {
-                        Codigo = "1",
-                        Descripcion = "Little boys foods",
-                        FechaEntrega = DateTime.Now,
-                        IdentidadCliente = "1602199700135",
-                        Total = 1500,
-                    });
-                    deliverySystem.OrdenDeEntregaDetalle.Add(new Security.OrdenDeEntregaDetalle
-                    {
-                        OrdenDeEntregaCodigo = "1",
-                        Cantidad = 5,
-                        CodigoProducto = "TAC",
-                        Total = 125,
-                    });
-                    deliverySystem.OrdenDeEntregaDetalle.Add(new Security.OrdenDeEntregaDetalle
-                    {
-                        OrdenDeEntregaCodigo = "1",
-                        Cantidad = 5,
-                        CodigoProducto = "BAP",
-                        Total = 75,
-                    });
+                Identidad = "1602199700135",
+                Nombres = "Joel Ramiro",
+                Apellidos = "Caballero Castellanos",
+                CorreoElectronico = "joel.ramirocc@gmail.com",
+                Direccion = "Barrio la Primavera, Choloma Cortes",
+                FechaNacimiento = new DateTime(1997, 05, 26),
+                Telefono = 31549099,
+            });
 
-                    deliverySystem.SaveChanges();
-                }
-                catch (Exception m)
-                {
-                    var mmm = m.Message;
-                }
+            deliverySystem.Client.Add(new Security.Client
+            {
+                Identidad = "1602199300132",
+                Nombres = "Bessy Yolani",
+                Apellidos = "Caballero Castellanos",
+                CorreoElectronico = "bessy.yolani@gmail.com",
+                Direccion = "Villas del Marquez, Choloma Cortes",
+                FechaNacimiento = new DateTime(1993, 05, 26),
+                Telefono = 98605328,
+            });
 
-            }
+            deliverySystem.SaveChanges();
+            deliverySystem.Producto.Add(new Security.Producto
+            {
+                Codigo = "BAS",
+                Nombre = "Baleada",
+                Descripcion = "Baleada sencilla",
+                Cantidad = 15,
+                PrecioUnitario = 10,
+            });
+            deliverySystem.Producto.Add(new Security.Producto
+            {
+                Codigo = "BAP",
+                Nombre = "Baleada",
+                Descripcion = "Baleada con pollo",
+                Cantidad = 10,
+                PrecioUnitario = 15,
+            });
+            deliverySystem.Producto.Add(new Security.Producto
+            {
+                Codigo = "TAC",
+                Nombre = "Taco",
+                Descripcion = "Tacos de pollo",
+                Cantidad = 20,
+                PrecioUnitario = 25,
+            });
 
-            return true;
+            deliverySystem.SaveChanges();
+            var orden = deliverySystem.OrdenDeEntrega.Add(new Security.OrdenDeEntrega
+            {
+                Codigo = "1",
+                Descripcion = "Little boys foods",
+                FechaEntrega = DateTime.Now,
+                IdentidadCliente = "1602199700135",
+                Total = 1500,
+            });
+            deliverySystem.OrdenDeEntregaDetalle.Add(new Security.OrdenDeEntregaDetalle
+            {
+                OrdenDeEntregaCodigo = "1",
+                Cantidad = 5,
+                CodigoProducto = "TAC",
+                Total = 125,
+            });
+            deliverySystem.OrdenDeEntregaDetalle.Add(new Security.OrdenDeEntregaDetalle
+            {
+                OrdenDeEntregaCodigo = "1",
+                Cantidad = 5,
+                CodigoProducto = "BAP",
+                Total = 75,
+            });
+
+            deliverySystem.SaveChanges();
+
+            base.Seed(deliverySystem);
         }
     }
 }

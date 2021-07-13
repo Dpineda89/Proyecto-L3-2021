@@ -1,5 +1,7 @@
-﻿using System;
+﻿using DeliverySystem.Libreria.Context;
+using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,17 +10,17 @@ namespace DeliverySystem.Security
 {
     public class UserSecurity
     {
+        DeliverySystemContext deliverySystem;
+        public UserSecurity()
+        {
+            var conn = new SqlConnection(GeneralData.conection);
+            this.deliverySystem = new DeliverySystemContext(conn);
+        }
+
         public bool ValidateUser(string user, string password)
         {
-            if (user == "darwin" && password == "test123")
-            {
-                return true;
-            }
-            else if (user == "joel" && password == "test456")
-            {
-                return true;
-            }
-            return false;
+            var exist = this.deliverySystem.Usuario.Any(u => u.UserName == user && u.Password == password);
+            return exist;
         }
     }
 }

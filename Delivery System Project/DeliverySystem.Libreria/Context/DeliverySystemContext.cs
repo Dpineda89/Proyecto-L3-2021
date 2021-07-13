@@ -1,4 +1,5 @@
-﻿using DeliverySystem.Security;
+﻿using DeliverySystem.Libreria.Model;
+using DeliverySystem.Security;
 using System;
 using System.Collections.Generic;
 using System.Data.Common;
@@ -16,6 +17,7 @@ namespace DeliverySystem.Libreria.Context
         {
         }
 
+        public DbSet<Usuario> Usuario { get; set; }
         public DbSet<Client> Client { get; set; }
         public DbSet<Producto> Producto { get; set; }
         public DbSet<OrdenDeEntrega> OrdenDeEntrega { get; set; }
@@ -23,7 +25,7 @@ namespace DeliverySystem.Libreria.Context
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder); 
+            Database.SetInitializer(new SeedData());
         }
     }
 }

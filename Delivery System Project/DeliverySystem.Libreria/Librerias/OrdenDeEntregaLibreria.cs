@@ -16,7 +16,7 @@ namespace DeliverySystem.Security
 
         public OrdenDeEntregaLibreria()
         {
-            var conn = new SqlConnection(SeedData.conection);
+            var conn = new SqlConnection(GeneralData.conection);
             this.DeliverySystem = new DeliverySystemContext(conn);
         }
 

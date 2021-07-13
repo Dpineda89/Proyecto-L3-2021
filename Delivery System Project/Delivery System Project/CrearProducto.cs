@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -43,7 +44,7 @@ namespace Delivery_System_Project
             {
                 try
                 {
-                    var cliente = new DeliverySystem.Security.Producto
+                    var producto = new DeliverySystem.Security.Producto
                     {
                         Nombre = this.textBox1.Text,
                         Descripcion = this.richTextBox1.Text,
@@ -52,7 +53,12 @@ namespace Delivery_System_Project
                         PrecioUnitario = System.Convert.ToInt32(this.textBox2.Text),
                     };
 
-                    var result = this.productoLibreria.AgregarProducto(cliente);
+                    if (pictureBox1.Image != null)
+                    {
+                        producto.Foto = Program.ConvetImageToBytes(pictureBox1.Image);
+                    }
+
+                    var result = this.productoLibreria.AgregarProducto(producto);
 
                     if (result == false)
                     {
@@ -84,6 +90,23 @@ namespace Delivery_System_Project
         private void CrearProducto_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            openFileDialog1.ShowDialog();
+            var archivo = openFileDialog1.FileName;
+            if (!string.IsNullOrEmpty(archivo))
+            {
+                var fileInfo = new FileInfo(archivo);
+                var fileStream = fileInfo.OpenRead();
+                this.pictureBox1.Image = Image.FromStream(fileStream);
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            this.pictureBox1.Image = null;
         }
     }
 }

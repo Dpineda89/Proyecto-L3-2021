@@ -14,9 +14,7 @@ namespace DeliverySystem.Security
         DeliverySystemContext DeliverySystem;
         public ClientLibreria()
         {
-            
-            var eee = @"Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=Contabilidad-Main;MultipleActiveResultSets=true; Integrated Security=true";
-            var conn = new SqlConnection(SeedData.conection);
+            var conn = new SqlConnection(GeneralData.conection);
             this.DeliverySystem = new DeliverySystemContext(conn);
         }
 
