@@ -61,9 +61,11 @@
     <Compile Include="Context\GeneralData.cs" />
     <Compile Include="Context\SeedData.cs" />
     <Compile Include="Librerias\ClientLibreria.cs" />
+    <Compile Include="Librerias\FacturaLibreria.cs" />
     <Compile Include="Librerias\OrdenDeEntregaLibreria.cs" />
     <Compile Include="Librerias\ProductoLibreria.cs" />
     <Compile Include="Model\Client.cs" />
+    <Compile Include="Model\Factura.cs" />
     <Compile Include="Model\OrdenDeEntrega.cs" />
     <Compile Include="Model\OrdenDeEntregaDetalle.cs" />
     <Compile Include="Model\Producto.cs" />

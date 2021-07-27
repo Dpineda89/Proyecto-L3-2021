@@ -79,5 +79,12 @@ namespace Delivery_System_Project
             form.MdiParent = this;
             form.Show();
         }
+
+        private void mostrarFacturasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = new Factura();
+            form.MdiParent = this;
+            form.Show();
+        }
     }
 }

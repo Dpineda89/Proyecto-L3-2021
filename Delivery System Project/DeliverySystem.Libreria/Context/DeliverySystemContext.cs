@@ -22,6 +22,7 @@ namespace DeliverySystem.Libreria.Context
         public DbSet<Producto> Producto { get; set; }
         public DbSet<OrdenDeEntrega> OrdenDeEntrega { get; set; }
         public DbSet<OrdenDeEntregaDetalle> OrdenDeEntregaDetalle { get; set; }
+        public DbSet<Factura> Factura { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

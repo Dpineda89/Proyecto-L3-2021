@@ -1,4 +1,5 @@
-﻿using DeliverySystem.Security;
+﻿using DeliverySystem.Libreria.Librerias;
+using DeliverySystem.Security;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,8 +15,10 @@ namespace Delivery_System_Project
     public partial class OrdenDeEntrega : Form
     {
         OrdenDeEntregaLibreria ordenDeEntregaLibreria;
+        FacturaLibreria factura;
         public OrdenDeEntrega()
         {
+            this.factura = new FacturaLibreria();
             this.ordenDeEntregaLibreria = new OrdenDeEntregaLibreria();
             InitializeComponent();
         }
@@ -53,6 +56,40 @@ namespace Delivery_System_Project
             catch (Exception esc)
             {
                 return;
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (this.dataGridView1.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Ninguna fila seleccionada");
+                return;
+            }
+            try
+            {
+                var codes = new List<DeliverySystem.Security.OrdenDeEntrega>();
+                for (int i = 0; i < this.dataGridView1.SelectedRows.Count; i++)
+                {
+                    var ordenDeEntrega = (DeliverySystem.Security.OrdenDeEntrega)this.dataGridView1.SelectedRows[i].DataBoundItem;
+                    codes.Add(ordenDeEntrega);
+                }
+
+                codes = codes.Where(c => string.IsNullOrEmpty(c.CodigoFactura)).ToList();
+                var result = this.factura.CrearFactura(codes);
+                if (result)
+                {
+                    MessageBox.Show("Se facturo correctamente.");
+                    this.LoadData();
+                }
+                else
+                {
+                    MessageBox.Show("No se pudo facturar.");
+                }
+            }
+            catch (Exception es)
+            {
+                var a = es.Message;
             }
         }
     }

@@ -1,4 +1,4 @@
-﻿using System;
+﻿        using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -13,6 +13,8 @@ namespace DeliverySystem.Libreria.Context
     {
         protected override void Seed(DeliverySystemContext deliverySystem)
         {
+            try
+            {
             deliverySystem.Usuario.Add(new Usuario
             {
                 UserName = "darwintest",
@@ -27,6 +29,14 @@ namespace DeliverySystem.Libreria.Context
             });
 
             deliverySystem.SaveChanges();
+
+
+            }
+            catch (Exception esa)
+            {
+                var mm = esa.Message;
+            }
+
             deliverySystem.Client.Add(new Security.Client
             {
                 Identidad = "1602199700135",
@@ -82,7 +92,7 @@ namespace DeliverySystem.Libreria.Context
                 Descripcion = "Little boys foods",
                 FechaEntrega = DateTime.Now,
                 IdentidadCliente = "1602199700135",
-                Total = 1500,
+                Total = 200,
             });
             deliverySystem.OrdenDeEntregaDetalle.Add(new Security.OrdenDeEntregaDetalle
             {

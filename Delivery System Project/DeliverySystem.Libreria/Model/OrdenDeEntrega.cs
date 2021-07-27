@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DeliverySystem.Libreria.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -24,6 +25,10 @@ namespace DeliverySystem.Security
 
         public decimal Total { get; set; }
 
+        [ForeignKey(nameof(Factura))]
+        public string CodigoFactura { get; set; }
+
+        public Factura Factura { get; set; }
         public ICollection<OrdenDeEntregaDetalle> Detalles { get; set; }
     }
 }
