@@ -37,7 +37,7 @@ namespace Delivery_System_Project
             form.MdiParent = this;
             form.Show();
         }
-
+        
         private void mostrarClientesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var form = new Cliente();
