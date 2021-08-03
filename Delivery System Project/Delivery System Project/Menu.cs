@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Delivery_System_Project.Reportes.Forms;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -37,7 +38,7 @@ namespace Delivery_System_Project
             form.MdiParent = this;
             form.Show();
         }
-        
+
         private void mostrarClientesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var form = new Cliente();
@@ -83,6 +84,27 @@ namespace Delivery_System_Project
         private void mostrarFacturasToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var form = new Factura();
+            form.MdiParent = this;
+            form.Show();
+        }
+
+        private void facturasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = new ReporteFacturas();
+            form.MdiParent = this;
+            form.Show();
+        }
+
+        private void productosToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            var form = new ReporteProductos();
+            form.MdiParent = this;
+            form.Show();
+        }
+
+        private void facturasToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            var form = new GFacturas();
             form.MdiParent = this;
             form.Show();
         }

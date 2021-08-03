@@ -52,10 +52,5 @@ namespace Delivery_System_Project
                 MessageBox.Show($"No se encontro la factura con el codigo [{code}].");
             }
         }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

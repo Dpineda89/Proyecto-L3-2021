@@ -24,6 +24,14 @@ namespace DeliverySystem.Libreria.Librerias
             var facturas = this.deliverySystem.Factura.ToList();
             return facturas;
         }
+        public IEnumerable<Factura> GetAllToReport()
+        {
+            var facturas = this.deliverySystem.Factura
+                .Include(d => d.OrdenesDeEntrega.Select(o => o.Client))
+                .ToList();
+
+            return facturas;
+        }
         public Factura GetByCode(string code)
         {
             var factura = this.deliverySystem.Factura.Include(f => f.OrdenesDeEntrega.Select(d => d.Detalles))
