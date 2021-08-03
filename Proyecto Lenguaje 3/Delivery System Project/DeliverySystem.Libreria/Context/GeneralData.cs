@@ -10,5 +10,6 @@ namespace DeliverySystem.Libreria.Context
     {
         public static string conection = @"Data Source=(local);Initial Catalog=Delivery;"
                 + "Integrated Security=SSPI;";
+
     }
 }
